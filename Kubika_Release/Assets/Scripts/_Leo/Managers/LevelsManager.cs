@@ -299,7 +299,7 @@ namespace Kubika.Game
 
         public IEnumerator MoveToNextLevel()
         {
-            ScenesManager.instance._LoadScene(ScenesIndex.TITLE_WORLD_MAP);
+            ScenesManager.instance._LoadScene(ScenesIndex.TITLE_SCREEN);
 
             while (!ScenesManager.instance.finishedLoadingScene) yield return null;
 

@@ -132,7 +132,7 @@ namespace Kubika.Game
                 case ScenesIndex.USER_INTERFACE:
                     break;*/
 
-                case ScenesIndex.TITLE_WORLD_MAP:
+                case ScenesIndex.TITLE_SCREEN:
                     WorldMapPriority();
                     break;
 
@@ -445,11 +445,11 @@ namespace Kubika.Game
 
                 #region //GENERAL
                 case "MAIN_MENU":
-                    ScenesManager.instance._LoadScene(ScenesIndex.TITLE_WORLD_MAP);
+                    ScenesManager.instance._LoadScene(ScenesIndex.TITLE_SCREEN);
                     break;
 
                 case "TITLE_WORLDMAP":
-                    ScenesManager.instance._LoadScene(ScenesIndex.TITLE_WORLD_MAP);
+                    ScenesManager.instance._LoadScene(ScenesIndex.TITLE_SCREEN);
                     break;
                 #endregion
 
