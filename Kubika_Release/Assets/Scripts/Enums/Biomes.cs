@@ -10,5 +10,7 @@ public enum Biomes
     Underwater = 3,
     Ruins = 4,
     Statues = 5,
-    Temple = 6
+    Temple = 6,
+    Chaos,
+    Count
 }

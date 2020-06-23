@@ -17,7 +17,7 @@ namespace Kubika.Game
         
         private Vector3Int gridSizeVector = new Vector3Int(gridSize, gridSize, gridSize);
         public float offset;
-        private List<GameObject> placedCubes = new List<GameObject>();
+        public List<GameObject> placedCubes = new List<GameObject>();
 
         private void Awake()
         {
