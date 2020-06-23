@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kubika.CustomLevelEditor;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,7 +16,7 @@ namespace Kubika.Game
         public FacingDirection facingDirection;
 
         public bool isStatic;
-        public Kubo grid;
+        public _Grid grid;
 
         [Space][Header("MATERIAL INFOS")]
         public Texture _MainTex;
@@ -72,7 +73,7 @@ namespace Kubika.Game
         public bool willPOP;
 
         // RIGIDBODY
-        Rigidbody rb;
+        Rigidbody rigidbody;
 
         // AUDIO 
         public AudioSource audioSourceCube;
@@ -80,7 +81,7 @@ namespace Kubika.Game
         // Start is called before the first frame update
         public virtual void Start()
         {
-            grid = Kubo.instance;
+            grid = _Grid.instance;
             SetScriptablePreset();
 
             audioSourceCube = gameObject.AddComponent<AudioSource>();
@@ -97,31 +98,31 @@ namespace Kubika.Game
         //Use to update Cube Info in Matrix, called on place and rotate cube
         public void SetRelevantNodeInfo()
         {
-            Kubo.instance.kuboGrid[myIndex - 1].cubeLayers = myCubeLayer;
-            Kubo.instance.kuboGrid[myIndex - 1].cubeType = myCubeType;
-            Kubo.instance.kuboGrid[myIndex - 1].cubeOnPosition = gameObject;
-            Kubo.instance.kuboGrid[myIndex - 1].facingDirection = facingDirection;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeLayers = myCubeLayer;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeType = myCubeType;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeOnPosition = gameObject;
+            _Grid.instance.kuboGrid[myIndex - 1].facingDirection = facingDirection;
 
-            //Kubo.instance.kuboGrid[myIndex - 1].worldPosition = transform.position; -> DON'T RESET WORLDPOS because cubes must reset to nodePos
-            Kubo.instance.kuboGrid[myIndex - 1].worldRotation = transform.eulerAngles;
+            //_Grid.instance.kuboGrid[myIndex - 1].worldPosition = transform.position; -> DON'T RESET WORLDPOS because cubes must reset to nodePos
+            _Grid.instance.kuboGrid[myIndex - 1].worldRotation = transform.eulerAngles;
         }
 
         //called on Cube Destroy, which actives on editor deleteCube()
         public void ResetCubeInfo()
         {
-            Kubo.instance.kuboGrid[myIndex - 1].cubeLayers = CubeLayers.cubeEmpty;
-            Kubo.instance.kuboGrid[myIndex - 1].cubeType = CubeTypes.None;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeLayers = CubeLayers.cubeEmpty;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeType = CubeTypes.None;
 
-            //Kubo.instance.kuboGrid[myIndex - 1].worldPosition = Vector3.zero; -> DON'T RESET WORLDPOS because cubes must reset to nodePos
-            Kubo.instance.kuboGrid[myIndex - 1].worldRotation = Vector3.zero;
+            //_Grid.instance.kuboGrid[myIndex - 1].worldPosition = Vector3.zero; -> DON'T RESET WORLDPOS because cubes must reset to nodePos
+            _Grid.instance.kuboGrid[myIndex - 1].worldRotation = Vector3.zero;
         }
 
         //call when level is loaded, places cube in world
         public void OnLoadSetTransform()
         {
-            transform.position = Kubo.instance.kuboGrid[myIndex - 1].worldPosition;
-            transform.rotation = Quaternion.Euler(Kubo.instance.kuboGrid[myIndex - 1].worldRotation);
-            transform.parent = Kubo.instance.gameObject.transform;
+            transform.position = _Grid.instance.kuboGrid[myIndex - 1].worldPosition;
+            transform.rotation = Quaternion.Euler(_Grid.instance.kuboGrid[myIndex - 1].worldRotation);
+            transform.parent = _Grid.instance.gameObject.transform;
         }
 
         public void DisableCube()
@@ -140,9 +141,9 @@ namespace Kubika.Game
         //gets called when you "hide"/"destroy a cube
         public virtual void HideCubeProcedure()
         {
-            Kubo.instance.kuboGrid[myIndex - 1].cubeLayers = CubeLayers.cubeEmpty;
-            Kubo.instance.kuboGrid[myIndex - 1].cubeType = CubeTypes.None;
-            Kubo.instance.kuboGrid[myIndex - 1].cubeOnPosition = null;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeLayers = CubeLayers.cubeEmpty;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeType = CubeTypes.None;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeOnPosition = null;
 
             _DataManager.instance.baseCube.Remove(this);
         }
@@ -150,9 +151,9 @@ namespace Kubika.Game
         // call when "reactivating" cubes
         public virtual void UndoProcedure()
         {
-            Kubo.instance.kuboGrid[myIndex - 1].cubeLayers = myCubeLayer;
-            Kubo.instance.kuboGrid[myIndex - 1].cubeType = myCubeType;
-            Kubo.instance.kuboGrid[myIndex - 1].cubeOnPosition = gameObject;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeLayers = myCubeLayer;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeType = myCubeType;
+            _Grid.instance.kuboGrid[myIndex - 1].cubeOnPosition = gameObject;
 
             _DataManager.instance.baseCube.Add(this);
         }
@@ -163,42 +164,42 @@ namespace Kubika.Game
             // X
             if (nodeDirection == _DirectionCustom.left)
             {
-                if (((index - Kubo.gridSize) + (Kubo.gridSize * Kubo.gridSize) - 1) / ((Kubo.gridSize * Kubo.gridSize) * (index / (Kubo.gridSize * Kubo.gridSize)) + (Kubo.gridSize * Kubo.gridSize)) != 0)
+                if (((index - grid.gridSize) + (grid.gridSize * grid.gridSize) - 1) / ((grid.gridSize * grid.gridSize) * (index / (grid.gridSize * grid.gridSize)) + (grid.gridSize * grid.gridSize)) != 0)
                     return true;
                 else return false;
             }
             // -X
             else if (nodeDirection == _DirectionCustom.right)
             {
-                if ((index + Kubo.gridSize) / ((Kubo.gridSize * Kubo.gridSize) * (index / (Kubo.gridSize * Kubo.gridSize) + 1)) != 1)
+                if ((index + grid.gridSize) / ((grid.gridSize * grid.gridSize) * (index / (grid.gridSize * grid.gridSize) + 1)) != 1)
                     return true;
                 else return false;
             }
             // Z
             else if (nodeDirection == _DirectionCustom.forward)
             {
-                if ((index + (Kubo.gridSize * Kubo.gridSize)) / ((Kubo.gridSize * Kubo.gridSize * Kubo.gridSize)) != 1)
+                if ((index + (grid.gridSize * grid.gridSize)) / ((grid.gridSize * grid.gridSize * grid.gridSize)) != 1)
                     return true;
                 else return false;
             }
             // -Z
             else if (nodeDirection == _DirectionCustom.backward)
             {
-                if (index - (Kubo.gridSize * Kubo.gridSize) >= 0)
+                if (index - (grid.gridSize * grid.gridSize) >= 0)
                     return true;
                 else return false;
             }
             // Y
             else if (nodeDirection == _DirectionCustom.up)
             {
-                if (index % Kubo.gridSize != 0)
+                if (index % grid.gridSize != 0)
                     return true;
                 else return false;
             }
             // -Y
             else if (nodeDirection == _DirectionCustom.down)
             {
-                if ((index - 1) % Kubo.gridSize != 0)
+                if ((index - 1) % grid.gridSize != 0)
                     return true;
                 else return false;
             }
@@ -1154,14 +1155,14 @@ namespace Kubika.Game
 
         public void ApplyRigidbody(Vector3 force)
         {
-            rb = gameObject.AddComponent<Rigidbody>();
-            rb.useGravity = false;
+            rigidbody = gameObject.AddComponent<Rigidbody>();
+            rigidbody.useGravity = false;
 
-            rb.maxAngularVelocity = UnityEngine.Random.Range(10, 80);
-            rb.AddTorque(new Vector3(UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1)), ForceMode.Impulse);
+            rigidbody.maxAngularVelocity = UnityEngine.Random.Range(10, 80);
+            rigidbody.AddTorque(new Vector3(UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1), UnityEngine.Random.Range(0, 1)), ForceMode.Impulse);
 
-            rb.velocity = force * 6.0f;
-            rb.AddForce(force * 6.0f, ForceMode.Impulse);
+            rigidbody.velocity = force * 6.0f;
+            rigidbody.AddForce(force * 6.0f, ForceMode.Impulse);
 
         }
 

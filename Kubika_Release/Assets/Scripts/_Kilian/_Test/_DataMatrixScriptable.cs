@@ -8,6 +8,6 @@ namespace Kubika.Game
     [CreateAssetMenu(fileName = "DataBank", menuName = "DataBank", order = 1)]
     public class _DataMatrixScriptable : ScriptableObject
     {
-        public KuboNode[] indexBank;
+        public Node[] indexBank;
     }
 }

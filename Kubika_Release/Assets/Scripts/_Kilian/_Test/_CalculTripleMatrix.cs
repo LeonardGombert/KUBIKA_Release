@@ -12,9 +12,9 @@ namespace Kubika.Game
         public int gridSize = 12;
         [Range(0.5f, 5)] public float offset;
 
-        public KuboNode[] grid0;
-        public KuboNode[] grid1;
-        public KuboNode[] grid2;
+        public Node[] grid0;
+        public Node[] grid1;
+        public Node[] grid2;
 
         private void Update()
         {
@@ -37,7 +37,7 @@ namespace Kubika.Game
         {
             gridSizeVector = new Vector3Int(gridSize, gridSize, gridSize);
 
-            grid0 = new KuboNode[gridSize * gridSize * gridSize];
+            grid0 = new Node[gridSize * gridSize * gridSize];
 
             ///// 1st Grid
 
@@ -49,7 +49,7 @@ namespace Kubika.Game
                     {
                         Vector3 nodePosition = new Vector3(x * offset, y * offset, z * offset);
 
-                        KuboNode currentNode = new KuboNode();
+                        Node currentNode = new Node();
 
                         currentNode.xCoord = x;
                         currentNode.yCoord = y;
@@ -71,7 +71,7 @@ namespace Kubika.Game
         {
             gridSizeVector = new Vector3Int(gridSize, gridSize, gridSize);
 
-            grid1 = new KuboNode[gridSize * gridSize * gridSize];
+            grid1 = new Node[gridSize * gridSize * gridSize];
 
             /////// 2nd Grid
 
@@ -83,7 +83,7 @@ namespace Kubika.Game
                     {
                         Vector3 nodePosition = new Vector3(x * offset, y * offset, z * offset);
 
-                        KuboNode currentNode = new KuboNode();
+                        Node currentNode = new Node();
 
                         currentNode.xCoord = x;
                         currentNode.yCoord = y;
@@ -107,7 +107,7 @@ namespace Kubika.Game
         {
             gridSizeVector = new Vector3Int(gridSize, gridSize, gridSize);
 
-            grid2 = new KuboNode[gridSize * gridSize * gridSize];
+            grid2 = new Node[gridSize * gridSize * gridSize];
 
 
             /////// 3rd Grid
@@ -121,7 +121,7 @@ namespace Kubika.Game
                     {
                         Vector3 nodePosition = new Vector3(x * offset, y * offset, z * offset);
 
-                        KuboNode currentNode = new KuboNode();
+                        Node currentNode = new Node();
 
                         currentNode.xCoord = x;
                         currentNode.yCoord = y;

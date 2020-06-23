@@ -64,7 +64,7 @@ namespace Kubika.Game
             }
 
             //shoot up
-            for (int position = myIndex; position < Kubo.gridSize * Kubo.gridSize * Kubo.gridSize; position++)
+            for (int position = myIndex; position < grid.gridSize * grid.gridSize * grid.gridSize; position++)
             {
                 RemoveCube(position);
                 if (!MatrixLimitCalcul(position, _DirectionCustom.up)) break;
@@ -98,14 +98,14 @@ namespace Kubika.Game
             if(ballIndex == myIndex -1 + _DirectionCustom.forward || ballIndex == myIndex - 1 + _DirectionCustom.backward)
             {
                 //shoot forwards
-                for (int position = myIndex; position < Kubo.gridSize * Kubo.gridSize * Kubo.gridSize; position += _DirectionCustom.forward)
+                for (int position = myIndex; position < grid.gridSize * grid.gridSize * grid.gridSize; position += _DirectionCustom.forward)
                 {
                     RemoveCube(position);
                     if (!MatrixLimitCalcul(position, _DirectionCustom.forward)) break;
                 } 
                 
                 //shoot back
-                for (int position = myIndex; position < Kubo.gridSize * Kubo.gridSize * Kubo.gridSize; position += _DirectionCustom.backward)
+                for (int position = myIndex; position < grid.gridSize * grid.gridSize * grid.gridSize; position += _DirectionCustom.backward)
                 {
                     RemoveCube(position);
                     if (!MatrixLimitCalcul(position, _DirectionCustom.backward)) break;
@@ -116,14 +116,14 @@ namespace Kubika.Game
             else if (ballIndex == myIndex - 1 + _DirectionCustom.right || ballIndex == myIndex - 1 + _DirectionCustom.left)
             {
                 //shoot right
-                for (int position = myIndex; position < Kubo.gridSize * Kubo.gridSize * Kubo.gridSize; position += _DirectionCustom.right)
+                for (int position = myIndex; position < grid.gridSize * grid.gridSize * grid.gridSize; position += _DirectionCustom.right)
                 {
                     RemoveCube(position);
                     if (!MatrixLimitCalcul(position, _DirectionCustom.right)) break;
                 }
 
                 //shoot left
-                for (int position = myIndex; position < Kubo.gridSize * Kubo.gridSize * Kubo.gridSize; position += _DirectionCustom.left)
+                for (int position = myIndex; position < grid.gridSize * grid.gridSize * grid.gridSize; position += _DirectionCustom.left)
                 {
                     RemoveCube(position);
                     if (!MatrixLimitCalcul(position, _DirectionCustom.left)) break;

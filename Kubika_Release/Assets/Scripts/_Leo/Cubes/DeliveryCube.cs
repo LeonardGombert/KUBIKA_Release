@@ -141,7 +141,7 @@ namespace Kubika.Game
         void BlowUpDirection()
         {
             //shoot forwards
-            for (int position = myIndex; position < Kubo.gridSize * Kubo.gridSize * Kubo.gridSize; position -= _DirectionCustom.LocalScanner(facingDirection))
+            for (int position = myIndex; position < grid.gridSize * grid.gridSize * grid.gridSize; position -= _DirectionCustom.LocalScanner(facingDirection))
             {
                 if (position > 0)
                 {
