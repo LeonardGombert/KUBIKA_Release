@@ -215,7 +215,7 @@ namespace Kubika.Game
 
 
 
-            myIndex = nextKuboNode.KuboNodeIndex;
+            myIndex = nextKuboNode.nodeIndex;
             nextKuboNode.cubeOnPosition = gameObject;
             //set updated index to cubeMoveable
             nextKuboNode.cubeLayers = CubeLayers.cubeFull;
@@ -223,9 +223,9 @@ namespace Kubika.Game
 
 
 
-            xCoordLocal = grid.kuboGrid[nextKuboNode.KuboNodeIndex - 1].xCoord;
-            yCoordLocal = grid.kuboGrid[nextKuboNode.KuboNodeIndex - 1].yCoord;
-            zCoordLocal = grid.kuboGrid[nextKuboNode.KuboNodeIndex - 1].zCoord;
+            xCoordLocal = grid.kuboGrid[nextKuboNode.nodeIndex - 1].xCoord;
+            yCoordLocal = grid.kuboGrid[nextKuboNode.nodeIndex - 1].yCoord;
+            zCoordLocal = grid.kuboGrid[nextKuboNode.nodeIndex - 1].zCoord;
 
             isMoving = false;
 

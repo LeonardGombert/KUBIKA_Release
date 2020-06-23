@@ -103,7 +103,7 @@ namespace Kubika.Game
             elevators = new List<ElevatorCube>();
             timers = new List<TimerCube>();
 
-            foreach (var item in _Grid.instance.kuboGrid)
+            foreach (var item in Kubo.instance.kuboGrid)
             {
                 if (item.cubeOnPosition != null)
                 {
@@ -356,9 +356,9 @@ namespace Kubika.Game
 
             foreach (_CubeBase cBase in baseCube)
             {
-                _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = null;
-                _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = CubeLayers.cubeEmpty;
-                _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeType = CubeTypes.None;
+                Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = null;
+                Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = CubeLayers.cubeEmpty;
+                Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeType = CubeTypes.None;
             }
 
             /////// DEMON SCRIPT TODO DEGEULASS
@@ -370,9 +370,9 @@ namespace Kubika.Game
                         foreach (_CubeBase cBase in baseCube)
                         {
                             cBase.myIndex = indexBankScriptable.indexBank[cBase.myIndex - 1].nodeIndex0;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = cBase.gameObject;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = cBase.myCubeLayer;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeType = cBase.myCubeType;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = cBase.gameObject;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = cBase.myCubeLayer;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeType = cBase.myCubeType;
 
                         }
                     }
@@ -384,9 +384,9 @@ namespace Kubika.Game
                         foreach (_CubeBase cBase in baseCube)
                         {                          
                             cBase.myIndex = indexBankScriptable.indexBank[cBase.myIndex - 1].nodeIndex1;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = cBase.gameObject;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = cBase.myCubeLayer;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeType = cBase.myCubeType;                           
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = cBase.gameObject;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = cBase.myCubeLayer;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeType = cBase.myCubeType;                           
 
                         }
                     }
@@ -399,9 +399,9 @@ namespace Kubika.Game
                         {
                             
                             cBase.myIndex = indexBankScriptable.indexBank[cBase.myIndex - 1].nodeIndex2;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = cBase.gameObject;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = cBase.myCubeLayer;
-                            _Grid.instance.kuboGrid[cBase.myIndex - 1].cubeType = cBase.myCubeType;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeOnPosition = cBase.gameObject;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeLayers = cBase.myCubeLayer;
+                            Kubo.instance.kuboGrid[cBase.myIndex - 1].cubeType = cBase.myCubeType;
                         }
 
                     }

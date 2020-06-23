@@ -364,16 +364,16 @@ namespace Kubika.Game
             }
 
 
-            myIndex = nextKuboNode.KuboNodeIndex;
+            myIndex = nextKuboNode.nodeIndex;
             nextKuboNode.cubeOnPosition = gameObject;
             //set updated index to cubeMoveable
             nextKuboNode.cubeLayers = CubeLayers.cubeMoveable;
             nextKuboNode.cubeType = myCubeType;
 
 
-            xCoordLocal = grid.kuboGrid[nextKuboNode.KuboNodeIndex - 1].xCoord;
-            yCoordLocal = grid.kuboGrid[nextKuboNode.KuboNodeIndex - 1].yCoord;
-            zCoordLocal = grid.kuboGrid[nextKuboNode.KuboNodeIndex - 1].zCoord;
+            xCoordLocal = grid.kuboGrid[nextKuboNode.nodeIndex - 1].xCoord;
+            yCoordLocal = grid.kuboGrid[nextKuboNode.nodeIndex - 1].yCoord;
+            zCoordLocal = grid.kuboGrid[nextKuboNode.nodeIndex - 1].zCoord;
 
             isPastilleAndIsOn = false;
 
@@ -807,7 +807,7 @@ namespace Kubika.Game
             {
                 grid.kuboGrid[index - 1 + _DirectionCustom.up].cubeOnPosition.GetComponent<_CubeMove>().OutlineActive(1);
                 grid.kuboGrid[index - 1 + _DirectionCustom.up].cubeOnPosition.GetComponent<_CubeMove>().ChangeEmoteFace(grid.kuboGrid[index - 1 + _DirectionCustom.up].cubeOnPosition.GetComponent<_CubeMove>()._EmoteSelectedTex);
-                GetChildRecursive(grid.kuboGrid[index + _DirectionCustom.up].KuboNodeIndex - 1);
+                GetChildRecursive(grid.kuboGrid[index + _DirectionCustom.up].nodeIndex - 1);
             }
         }
 
